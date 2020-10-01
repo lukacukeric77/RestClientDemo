@@ -4,7 +4,6 @@ import com.lukacukeric.restclientdemo.forms.CityInputForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +27,7 @@ class IndexController {
             return new ModelAndView("index", "sendingData", errors.getFieldErrorCount());
 
         } else {
-            return new ModelAndView("index"); //placehoder
+            return new ModelAndView("index"); //placeholder
         }
 
     }
