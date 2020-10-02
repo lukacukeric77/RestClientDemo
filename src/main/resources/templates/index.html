@@ -11,17 +11,13 @@
         <span th:errors="*{cityName}"></span>
         <input th:field="*{cityName}">
     </label>
-    <label>City's country code:
-        <span th:errors="*{countryCode}"></span>
-        <input th:field="*{countryCode}">
-    </label>
     <button name="enter">Enter</button>
     <button name="cancel">Cancel</button>
 </form>
 
 <!-- here comes the data -->
-<h1>City name</h1>
-<h1 th:text="${sendingData}"></h1>
+<h1>Temperature:</h1>
+<h1 th:text="${restResponse}"></h1>
 
 </body>
 </html>
