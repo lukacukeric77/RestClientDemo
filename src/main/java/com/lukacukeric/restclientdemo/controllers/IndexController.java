@@ -1,5 +1,6 @@
 package com.lukacukeric.restclientdemo.controllers;
 
+import com.lukacukeric.restclientdemo.domain.CurrentWeather;
 import com.lukacukeric.restclientdemo.forms.CityInputForm;
 import com.lukacukeric.restclientdemo.services.WeatherSituationServices;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,15 @@ class IndexController {
         if (errors.hasErrors()){
             return modelAndView;
         } else {
-            return modelAndView.addObject("restResponse", services.getTemperature(form.getCityName())); //placeholder
+            String city= form.getCityName();
+            CurrentWeather currentWeather = new CurrentWeather(
+                    services.getTemperature(city),
+                    services.getFeelsLike(city),
+                    services.getWindSpeed(city),
+                    services.getMainWeather(city),
+                    services.getWeatherDescription(city));
+            modelAndView.addObject("restResponse", currentWeather);
+            return modelAndView;
         }
 
     }

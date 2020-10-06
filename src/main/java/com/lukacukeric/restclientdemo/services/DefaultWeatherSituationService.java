@@ -19,23 +19,23 @@ private final WeatherSituationClient client;
        return client.getTemperature(cityName);
     }
 
-//    @Override
-//    public String getFeelsLike(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getMainWeather(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getWeatherDescription(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getWindSpeed(String cityName) {
-//        return null;
-//    }
+    @Override
+    public BigDecimal getFeelsLike(String cityName) {
+        return client.getFeelsLike(cityName);
+    }
+
+    @Override
+    public String getMainWeather(String cityName) {
+        return client.getMainWeather(cityName);
+    }
+
+    @Override
+    public String getWeatherDescription(String cityName) {
+        return client.getWeatherDescription(cityName);
+    }
+
+    @Override
+    public BigDecimal getWindSpeed(String cityName) {
+        return client.getWindSpeed(cityName);
+    }
 }

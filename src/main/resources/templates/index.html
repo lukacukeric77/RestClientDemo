@@ -16,8 +16,25 @@
 </form>
 
 <!-- here comes the data -->
-<h1>Temperature:</h1>
-<h1 th:text="${restResponse}"></h1>
+
+<div th:if="${restResponse}!=null">
+<h1>True temperature:</h1>
+<h1 th:text="${restResponse.temperature}"></h1>
+
+<h1>Feels like temperature:</h1>
+<h1 th:text="${restResponse.feels_like}"></h1>
+
+<h1>Wind speed:</h1>
+<h1 th:text="${restResponse.wind}"></h1>
+
+<h1>Weather:</h1>
+<h1 th:text="${restResponse.mainWeather}"></h1>
+
+<h1>Weather description:</h1>
+<h1 th:text="${restResponse.description}"></h1>
+</div>
+
+
 
 </body>
 </html>

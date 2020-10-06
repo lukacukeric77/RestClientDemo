@@ -9,9 +9,14 @@ import java.math.BigDecimal;
 class Main {
 
     @JsonProperty("temp")
-   private BigDecimal temperature;
+    private BigDecimal temperature;
+    private BigDecimal feels_like;
 
     public BigDecimal getTemperature() {
         return temperature;
+    }
+
+    public BigDecimal getFeels_like() {
+        return feels_like;
     }
 }

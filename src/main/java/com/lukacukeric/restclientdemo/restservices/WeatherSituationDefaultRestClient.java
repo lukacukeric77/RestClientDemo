@@ -1,6 +1,6 @@
 package com.lukacukeric.restclientdemo.restservices;
 
-import com.lukacukeric.restclientdemo.exceptions.CannotReadTemperatureException;
+import com.lukacukeric.restclientdemo.exceptions.CannotReadWeatherException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,27 +30,47 @@ public class WeatherSituationDefaultRestClient implements WeatherSituationClient
 
         } catch (Exception exception) {
             logger.error("Cannot retrieve temperature", exception);
-            throw new CannotReadTemperatureException();
+            throw new CannotReadWeatherException();
         }
     }
 
-//    @Override
-//    public String getFeelsLike(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getMainWeather(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getWeatherDescription(String cityName) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getWindSpeed(String cityName) {
-//        return null;
-//    }
+    @Override
+    public BigDecimal getFeelsLike(String cityName) {
+        try{
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getMain().getFeels_like();
+        } catch (Exception exception){
+            logger.error("Cannot retrieve feels like temperature", exception);
+            throw new CannotReadWeatherException();
+        }
+    }
+
+    @Override
+    public String getMainWeather(String cityName) {
+        try{
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getWeather().get(0).getMain();
+        } catch (Exception e){
+            logger.error("Cannot retrieve main weather", e);
+            throw new CannotReadWeatherException();
+        }
+    }
+
+    @Override
+    public String getWeatherDescription(String cityName) {
+        try {
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getWeather().get(0).getDescription();
+        } catch (Exception e){
+            logger.error("Cannot retrieve weather description", e);
+            throw new CannotReadWeatherException();
+        }
+    }
+
+    @Override
+    public BigDecimal getWindSpeed(String cityName) {
+        try{
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getWind().getSpeed();
+        } catch (Exception e){
+            logger.error("Cannot retrieve wind speed", e);
+            throw new CannotReadWeatherException();
+        }
+    }
 }
