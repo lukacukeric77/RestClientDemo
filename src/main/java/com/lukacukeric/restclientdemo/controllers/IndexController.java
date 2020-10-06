@@ -41,7 +41,9 @@ class IndexController {
                     services.getFeelsLike(city),
                     services.getWindSpeed(city),
                     services.getMainWeather(city),
-                    services.getWeatherDescription(city));
+                    services.getWeatherDescription(city),
+                    services.getSunrise(city),
+                    services.getSunset(city));
             modelAndView.addObject("restResponse", currentWeather);
             return modelAndView;
         }

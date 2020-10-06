@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 @Component
@@ -70,6 +71,26 @@ public class WeatherSituationDefaultRestClient implements WeatherSituationClient
             return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getWind().getSpeed();
         } catch (Exception e){
             logger.error("Cannot retrieve wind speed", e);
+            throw new CannotReadWeatherException();
+        }
+    }
+
+    @Override
+    public BigInteger getSunrise(String cityName) {
+        try {
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getSys().getSunrise();
+        } catch (Exception e){
+            logger.error("Cannot retrieve sunrise time", e);
+            throw new CannotReadWeatherException();
+        }
+    }
+
+    @Override
+    public BigInteger getSunset(String cityName) {
+        try{
+            return restTemplate.getForObject(uri, WeatherSituation.class, cityName).getSys().getSunset();
+        } catch (Exception e){
+            logger.error("Cannot retrieve sunset time", e);
             throw new CannotReadWeatherException();
         }
     }

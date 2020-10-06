@@ -10,6 +10,7 @@ public class WeatherSituation {
     private Main main;
     private Wind wind;
     private ArrayList<Weather> weather;
+    private Sys sys;
 
     public Main getMain() {
         return main;
@@ -21,5 +22,9 @@ public class WeatherSituation {
 
     public ArrayList<Weather> getWeather() {
         return weather;
+    }
+
+    public Sys getSys() {
+        return sys;
     }
 }

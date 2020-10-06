@@ -1,6 +1,7 @@
 package com.lukacukeric.restclientdemo.services;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 public interface WeatherSituationServices {
 
@@ -9,5 +10,7 @@ public interface WeatherSituationServices {
     String getMainWeather(String cityName);
     String getWeatherDescription(String cityName);
     BigDecimal getWindSpeed(String cityName);
+    ZonedDateTime getSunrise(String cityName);
+    ZonedDateTime getSunset(String cityName);
 
 }
