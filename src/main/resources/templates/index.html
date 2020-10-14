@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Get Your Temperature</title>
+    <link rel="stylesheet" th:href="@{/css/restclientdemo.css}">
 </head>
 <body>
 <h1>To get the current weather, please input the name of the city and its country code:</h1>
@@ -34,12 +35,12 @@
     <h1 th:text="${restResponse.description}"></h1>
 
     <h1> Sunrise time on today's date (<span
-            th:text="|${restResponse.sunrise.dayOfMonth}.${restResponse.sunrise.month}.${restResponse.sunrise.year}|"> </span>):
+            th:text="${#temporals.format(restResponse.sunrise, 'dd-MM-yyyy')}"> </span>):
     </h1>
-    <h1 th:text="|${restResponse.sunrise.hour}:${restResponse.sunrise.minute}|"></h1>
+    <h1 th:text="${#temporals.format(restResponse.sunrise, 'HH:mm')}"></h1>
 
     <h1> Sunset time:</h1>
-    <h1 th:text="|${restResponse.sunset}:${restResponse.sunset.minute}|"></h1>
+    <h1 th:text="${#temporals.format(restResponse.sunset, 'HH:mm')}"></h1>
 </div>
 
 
