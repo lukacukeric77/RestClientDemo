@@ -6,9 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/restclientdemo.css}">
 </head>
 <body>
-<h1>To get the current weather, please input the name of the city and its country code:</h1>
+<div class="container">
+<h1>For current weather, please input the name of the city:</h1>
 <form th:object="${cityInputForm}" method="post" th:action="@{/city}">
-    <label>Name of the city:
+    <label>
         <span th:errors="*{cityName}"></span>
         <input th:field="*{cityName}">
     </label>
@@ -18,31 +19,39 @@
 
 <!-- here comes the data -->
 
-<div th:if="${restResponse}!=null">
-    <h1>True temperature:</h1>
-    <h1 th:text="${restResponse.temperature}"></h1>
-
-    <h1>Feels like temperature:</h1>
-    <h1 th:text="${restResponse.feels_like}"></h1>
-
-    <h1>Wind speed:</h1>
-    <h1 th:text="${restResponse.wind}"></h1>
-
-    <h1>Weather:</h1>
-    <h1 th:text="${restResponse.mainWeather}"></h1>
-
-    <h1>Weather description:</h1>
-    <h1 th:text="${restResponse.description}"></h1>
-
-    <h1> Sunrise time on today's date (<span
-            th:text="${#temporals.format(restResponse.sunrise, 'dd-MM-yyyy')}"> </span>):
-    </h1>
-    <h1 th:text="${#temporals.format(restResponse.sunrise, 'HH:mm')}"></h1>
-
-    <h1> Sunset time:</h1>
-    <h1 th:text="${#temporals.format(restResponse.sunset, 'HH:mm')}"></h1>
+<table th:if="${restResponse}" !=null>
+    <tr>
+        <td>Actual temperature</td>
+        <td class="td_response" th:text="${restResponse.temperature}"></td>
+    </tr>
+    <tr>
+        <td>Fells like temeparture</td>
+        <td class="td_response" th:text="${restResponse.feels_like}"></td>
+    </tr>
+    <tr>
+        <td>Wind speed</td>
+        <td class="td_response" th:text="${restResponse.wind}"></td>
+    </tr>
+    <tr>
+        <td>Weather</td>
+        <td class="td_response" th:text="${restResponse.mainWeather}"></td>
+    </tr>
+    <tr>
+        <td>Weather description</td>
+        <td class="td_response" th:text="${restResponse.description}"></td>
+    </tr>
+    <tr>
+        <td> Sunrise time on today's date (<span
+                th:text="${#temporals.format(restResponse.sunrise, 'dd-MM-yyyy')}"> </span>)
+        </td>
+        <td class="td_response" th:text="${#temporals.format(restResponse.sunrise, 'HH:mm')}"></td>
+    </tr>
+    <tr>
+    <td> Sunset time</td>
+    <td class="td_response" th:text="${#temporals.format(restResponse.sunset, 'HH:mm')}"></td>
+    </tr>
+</table>
 </div>
-
 
 </body>
 </html>
